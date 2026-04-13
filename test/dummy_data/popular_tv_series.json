@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "backdrop_path": "/muth4OYamXf41G2evdrLEg8d3om.jpg",
+      "first_air_date": "2021-09-17",
+      "genre_ids": [10765, 10759, 18],
+      "id": 88396,
+      "name": "The Falcon and the Winter Soldier",
+      "origin_country": ["US"],
+      "original_language": "en",
+      "original_name": "The Falcon and the Winter Soldier",
+      "overview": "Following the events of Avengers: Endgame, Sam Wilson/Falcon and Bucky Barnes/Winter Soldier team up in a global adventure.",
+      "popularity": 78.978,
+      "poster_path": "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
+      "vote_average": 7.9,
+      "vote_count": 5765
+    }
+  ]
+}

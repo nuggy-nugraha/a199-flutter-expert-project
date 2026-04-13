@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "369230702143",
+    "firebase_url": "https://belajar-firebase-37c5f-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "belajar-firebase-37c5f",
+    "storage_bucket": "belajar-firebase-37c5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369230702143:android:77910fec3cd9d441d43a8a",
+        "android_client_info": {
+          "package_name": "com.dicoding.ditonton"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxwHGcBNbL7FVh7WOs9VFRFKvxrG7Fda8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369230702143:android:0ec43251c4106538d43a8a",
+        "android_client_info": {
+          "package_name": "com.muslimdeveloper.belajarfirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxwHGcBNbL7FVh7WOs9VFRFKvxrG7Fda8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369230702143:android:d5b7df4260d604afd43a8a",
+        "android_client_info": {
+          "package_name": "com.muslimdeveloper.lomba"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxwHGcBNbL7FVh7WOs9VFRFKvxrG7Fda8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
