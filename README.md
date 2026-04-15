@@ -1,6 +1,6 @@
 # Ditonton - Flutter Expert Project
 
-[![CI](https://github.com/your-username/a199-flutter-expert-project/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/a199-flutter-expert-project/actions/workflows/ci.yml)
+[![CI](https://github.com/nuggy-nugraha/a199-flutter-expert-project/actions/workflows/ci.yml/badge.svg)](https://github.com/nuggy-nugraha/a199-flutter-expert-project/actions/workflows/ci.yml)
 
 Repository ini merupakan submission kelas Flutter Expert Dicoding Indonesia — aplikasi **Ditonton** untuk menampilkan daftar film dan serial TV dari The Movie Database (TMDB).
 
