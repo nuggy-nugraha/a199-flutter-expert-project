@@ -81,7 +81,7 @@ void main() {
         voteCount: 100,
         seasonNumber: 1,
       );
-      final result = EpisodeModel.fromJson({
+      final result = EpisodeModel.fromJson(const {
         'air_date': null,
         'episode_number': 1,
         'id': 1234567,

@@ -31,7 +31,7 @@ void main() {
   ) async {
     whenListen(
       mockBloc,
-      Stream<PopularMoviesState>.empty(),
+      const Stream<PopularMoviesState>.empty(),
       initialState: PopularMoviesLoading(),
     );
 
@@ -49,8 +49,8 @@ void main() {
   ) async {
     whenListen(
       mockBloc,
-      Stream<PopularMoviesState>.empty(),
-      initialState: PopularMoviesLoaded(<Movie>[]),
+      const Stream<PopularMoviesState>.empty(),
+      initialState: const PopularMoviesLoaded(<Movie>[]),
     );
 
     final listViewFinder = find.byType(ListView);
@@ -65,7 +65,7 @@ void main() {
   ) async {
     whenListen(
       mockBloc,
-      Stream<PopularMoviesState>.empty(),
+      const Stream<PopularMoviesState>.empty(),
       initialState: const PopularMoviesError('Error message'),
     );
 
@@ -81,8 +81,8 @@ void main() {
   ) async {
     whenListen(
       mockBloc,
-      Stream<PopularMoviesState>.empty(),
-      initialState: PopularMoviesLoaded([testMovie]),
+      const Stream<PopularMoviesState>.empty(),
+      initialState: const PopularMoviesLoaded([testMovie]),
     );
 
     await tester.pumpWidget(makeTestableWidget(const PopularMoviesPage()));

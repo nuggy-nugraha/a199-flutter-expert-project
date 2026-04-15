@@ -1,6 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:ditonton/domain/entities/episode.dart';
-import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:ditonton/presentation/bloc/tv_series_detail_bloc.dart';
 import 'package:ditonton/presentation/pages/tv_series_detail_page.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +47,7 @@ void main() {
     (WidgetTester tester) async {
       whenListen(
         mockBloc,
-        Stream<TVSeriesDetailState>.empty(),
+        const Stream<TVSeriesDetailState>.empty(),
         initialState: baseLoadedState,
       );
 
@@ -67,7 +66,7 @@ void main() {
     (WidgetTester tester) async {
       whenListen(
         mockBloc,
-        Stream<TVSeriesDetailState>.empty(),
+        const Stream<TVSeriesDetailState>.empty(),
         initialState: baseLoadedState.copyWith(isAddedToWatchlist: true),
       );
 
@@ -128,7 +127,7 @@ void main() {
   ) async {
     whenListen(
       mockBloc,
-      Stream<TVSeriesDetailState>.empty(),
+      const Stream<TVSeriesDetailState>.empty(),
       initialState: TVSeriesDetailLoading(),
     );
 
@@ -144,7 +143,7 @@ void main() {
   ) async {
     whenListen(
       mockBloc,
-      Stream<TVSeriesDetailState>.empty(),
+      const Stream<TVSeriesDetailState>.empty(),
       initialState: const TVSeriesDetailError('Error message'),
     );
 
@@ -160,7 +159,7 @@ void main() {
     (WidgetTester tester) async {
       whenListen(
         mockBloc,
-        Stream<TVSeriesDetailState>.empty(),
+        const Stream<TVSeriesDetailState>.empty(),
         initialState: baseLoadedState.copyWith(
           recommendations: testTVSeriesList,
         ),
@@ -179,7 +178,7 @@ void main() {
     (WidgetTester tester) async {
       whenListen(
         mockBloc,
-        Stream<TVSeriesDetailState>.empty(),
+        const Stream<TVSeriesDetailState>.empty(),
         initialState: baseLoadedState,
       );
 

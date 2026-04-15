@@ -31,7 +31,7 @@ void main() {
   ) async {
     whenListen(
       mockBloc,
-      Stream<TopRatedTVSeriesState>.empty(),
+      const Stream<TopRatedTVSeriesState>.empty(),
       initialState: TopRatedTVSeriesLoading(),
     );
 
@@ -49,8 +49,8 @@ void main() {
   ) async {
     whenListen(
       mockBloc,
-      Stream<TopRatedTVSeriesState>.empty(),
-      initialState: TopRatedTVSeriesLoaded(<TVSeries>[]),
+      const Stream<TopRatedTVSeriesState>.empty(),
+      initialState: const TopRatedTVSeriesLoaded(<TVSeries>[]),
     );
 
     final listViewFinder = find.byType(ListView);
@@ -65,7 +65,7 @@ void main() {
   ) async {
     whenListen(
       mockBloc,
-      Stream<TopRatedTVSeriesState>.empty(),
+      const Stream<TopRatedTVSeriesState>.empty(),
       initialState: const TopRatedTVSeriesError('Error message'),
     );
 
@@ -81,8 +81,8 @@ void main() {
     (WidgetTester tester) async {
       whenListen(
         mockBloc,
-        Stream<TopRatedTVSeriesState>.empty(),
-        initialState: TopRatedTVSeriesLoaded([testTVSeries]),
+        const Stream<TopRatedTVSeriesState>.empty(),
+        initialState: const TopRatedTVSeriesLoaded([testTVSeries]),
       );
 
       await tester.pumpWidget(makeTestableWidget(const TopRatedTVSeriesPage()));

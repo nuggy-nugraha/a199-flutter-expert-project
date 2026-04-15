@@ -84,9 +84,9 @@ void main() {
       act: (bloc) => bloc.add(const FetchMovieDetail(tId)),
       expect: () => [
         MovieDetailLoading(),
-        MovieDetailLoaded(
+        const MovieDetailLoaded(
           movie: testMovieDetail,
-          recommendations: const [],
+          recommendations: [],
           isAddedToWatchlist: false,
           watchlistMessage: '',
         ),

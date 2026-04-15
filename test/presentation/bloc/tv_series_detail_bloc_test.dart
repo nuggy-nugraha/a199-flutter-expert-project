@@ -364,29 +364,29 @@ void main() {
       act: (bloc) => bloc.add(const FetchTVSeriesDetail(tId)),
       expect: () => [
         TVSeriesDetailLoading(),
-        TVSeriesDetailLoaded(
+        const TVSeriesDetailLoaded(
           tvSeries: testTVSeriesDetail,
-          recommendations: const [],
+          recommendations: [],
           isAddedToWatchlist: false,
           watchlistMessage: '',
-          seasonEpisodes: const [],
+          seasonEpisodes: [],
           selectedSeason: 1,
           episodeState: TVSeriesEpisodeState.empty,
           episodeMessage: '',
         ),
-        TVSeriesDetailLoaded(
+        const TVSeriesDetailLoaded(
           tvSeries: testTVSeriesDetail,
-          recommendations: const [],
+          recommendations: [],
           isAddedToWatchlist: false,
           watchlistMessage: '',
-          seasonEpisodes: const [],
+          seasonEpisodes: [],
           selectedSeason: 1,
           episodeState: TVSeriesEpisodeState.loading,
           episodeMessage: '',
         ),
-        TVSeriesDetailLoaded(
+        const TVSeriesDetailLoaded(
           tvSeries: testTVSeriesDetail,
-          recommendations: const [],
+          recommendations: [],
           isAddedToWatchlist: false,
           watchlistMessage: '',
           seasonEpisodes: tEpisodes,
@@ -506,7 +506,7 @@ void main() {
     });
 
     test('LoadTVSeriesWatchlistStatus props contains id', () {
-      expect(LoadTVSeriesWatchlistStatus(tId).props, [tId]);
+      expect(const LoadTVSeriesWatchlistStatus(tId).props, [tId]);
     });
 
     test('FetchTVSeriesSeasonDetail props contains tvId and seasonNumber', () {

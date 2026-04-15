@@ -195,7 +195,7 @@ void main() {
     const tvId = 88396;
     const seasonNumber = 1;
 
-    final tSeasonDetailResponse = SeasonDetailResponse.fromJson({
+    final tSeasonDetailResponse = SeasonDetailResponse.fromJson(const {
       'id': 134006,
       'name': 'Season 1',
       'overview': 'Sam and Bucky team up for global adventure.',

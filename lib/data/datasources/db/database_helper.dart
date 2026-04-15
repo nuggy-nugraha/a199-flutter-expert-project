@@ -69,7 +69,11 @@ class DatabaseHelper {
 
   Future<int> insertWatchlist(MovieTable movie) async {
     final db = await database;
-    return await db!.insert(_tblWatchlist, movie.toJson());
+    return await db!.insert(
+      _tblWatchlist,
+      movie.toJson(),
+      conflictAlgorithm: ConflictAlgorithm.ignore,
+    );
   }
 
   Future<int> removeWatchlist(MovieTable movie) async {
@@ -104,7 +108,11 @@ class DatabaseHelper {
 
   Future<int> insertTVSeriesWatchlist(TVSeriesTable tvSeries) async {
     final db = await database;
-    return await db!.insert(_tblTVSeriesWatchlist, tvSeries.toJson());
+    return await db!.insert(
+      _tblTVSeriesWatchlist,
+      tvSeries.toJson(),
+      conflictAlgorithm: ConflictAlgorithm.ignore,
+    );
   }
 
   Future<int> removeTVSeriesWatchlist(TVSeriesTable tvSeries) async {

@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/presentation/bloc/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/pages/movie_detail_page.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +41,7 @@ void main() {
     (WidgetTester tester) async {
       whenListen(
         mockBloc,
-        Stream<MovieDetailState>.empty(),
+        const Stream<MovieDetailState>.empty(),
         initialState: baseLoadedState,
       );
 
@@ -59,7 +58,7 @@ void main() {
     (WidgetTester tester) async {
       whenListen(
         mockBloc,
-        Stream<MovieDetailState>.empty(),
+        const Stream<MovieDetailState>.empty(),
         initialState: baseLoadedState.copyWith(isAddedToWatchlist: true),
       );
 
@@ -114,7 +113,7 @@ void main() {
   ) async {
     whenListen(
       mockBloc,
-      Stream<MovieDetailState>.empty(),
+      const Stream<MovieDetailState>.empty(),
       initialState: MovieDetailLoading(),
     );
 
@@ -128,7 +127,7 @@ void main() {
   ) async {
     whenListen(
       mockBloc,
-      Stream<MovieDetailState>.empty(),
+      const Stream<MovieDetailState>.empty(),
       initialState: const MovieDetailError('Error message'),
     );
 
@@ -142,7 +141,7 @@ void main() {
     (WidgetTester tester) async {
       whenListen(
         mockBloc,
-        Stream<MovieDetailState>.empty(),
+        const Stream<MovieDetailState>.empty(),
         initialState: baseLoadedState.copyWith(recommendations: testMovieList),
       );
 
@@ -157,7 +156,7 @@ void main() {
     (WidgetTester tester) async {
       whenListen(
         mockBloc,
-        Stream<MovieDetailState>.empty(),
+        const Stream<MovieDetailState>.empty(),
         initialState: baseLoadedState,
       );
 
