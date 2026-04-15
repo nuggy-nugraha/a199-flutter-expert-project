@@ -1,4 +1,4 @@
-﻿import 'package:ditonton/injection.dart' as di;
+import 'package:ditonton/injection.dart' as di;
 import 'package:ditonton/main.dart' as app;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,7 +11,7 @@ Future<void> _waitForNetwork(WidgetTester tester) async {
 }
 
 Future<void> _launchApp(WidgetTester tester) async {
-  app.main(); 
+  app.main();
   await _waitForNetwork(tester);
 }
 
@@ -127,19 +127,18 @@ void main() {
     },
   );
 
-  testWidgets(
-    '8. Watchlist Movies page should open from Movie Home drawer',
-    (tester) async {
-      await _launchApp(tester);
+  testWidgets('8. Watchlist Movies page should open from Movie Home drawer', (
+    tester,
+  ) async {
+    await _launchApp(tester);
 
-      await tester.tap(find.byIcon(Icons.menu));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('Watchlist'));
-      await _waitForNetwork(tester);
+    await tester.tap(find.byIcon(Icons.menu));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Watchlist'));
+    await _waitForNetwork(tester);
 
-      expect(find.text('Watchlist'), findsOneWidget);
-    },
-  );
+    expect(find.text('Watchlist'), findsOneWidget);
+  });
 
   testWidgets(
     '9. About page should open from Movie Home drawer and display description',
@@ -155,15 +154,14 @@ void main() {
     },
   );
 
-  testWidgets(
-    '10. TV Series Home page should open via drawer TV Series item',
-    (tester) async {
-      await _launchApp(tester);
-      await _goToTVSeriesHome(tester);
+  testWidgets('10. TV Series Home page should open via drawer TV Series item', (
+    tester,
+  ) async {
+    await _launchApp(tester);
+    await _goToTVSeriesHome(tester);
 
-      expect(find.text('Ditonton TV Series'), findsOneWidget);
-    },
-  );
+    expect(find.text('Ditonton TV Series'), findsOneWidget);
+  });
 
   testWidgets(
     '11. TV Series Home should display Now Playing, Popular, Top Rated sections',
@@ -194,53 +192,50 @@ void main() {
     },
   );
 
-  testWidgets(
-    '13. Now Playing TV Series page should open from See More',
-    (tester) async {
-      await _launchApp(tester);
-      await _goToTVSeriesHome(tester);
+  testWidgets('13. Now Playing TV Series page should open from See More', (
+    tester,
+  ) async {
+    await _launchApp(tester);
+    await _goToTVSeriesHome(tester);
 
-      final nowPlayingSeeMore = find.text('See More').first;
-      await tester.ensureVisible(nowPlayingSeeMore);
-      await tester.pumpAndSettle();
-      await tester.tap(nowPlayingSeeMore);
-      await _waitForNetwork(tester);
+    final nowPlayingSeeMore = find.text('See More').first;
+    await tester.ensureVisible(nowPlayingSeeMore);
+    await tester.pumpAndSettle();
+    await tester.tap(nowPlayingSeeMore);
+    await _waitForNetwork(tester);
 
-      expect(find.text('Now Playing TV Series'), findsOneWidget);
-    },
-  );
+    expect(find.text('Now Playing TV Series'), findsOneWidget);
+  });
 
-  testWidgets(
-    '14. Popular TV Series page should open from See More',
-    (tester) async {
-      await _launchApp(tester);
-      await _goToTVSeriesHome(tester);
+  testWidgets('14. Popular TV Series page should open from See More', (
+    tester,
+  ) async {
+    await _launchApp(tester);
+    await _goToTVSeriesHome(tester);
 
-      final popularSeeMore = find.text('See More').at(1);
-      await tester.ensureVisible(popularSeeMore);
-      await tester.pumpAndSettle();
-      await tester.tap(popularSeeMore);
-      await _waitForNetwork(tester);
+    final popularSeeMore = find.text('See More').at(1);
+    await tester.ensureVisible(popularSeeMore);
+    await tester.pumpAndSettle();
+    await tester.tap(popularSeeMore);
+    await _waitForNetwork(tester);
 
-      expect(find.text('Popular TV Series'), findsOneWidget);
-    },
-  );
+    expect(find.text('Popular TV Series'), findsOneWidget);
+  });
 
-  testWidgets(
-    '15. Top Rated TV Series page should open from See More',
-    (tester) async {
-      await _launchApp(tester);
-      await _goToTVSeriesHome(tester);
+  testWidgets('15. Top Rated TV Series page should open from See More', (
+    tester,
+  ) async {
+    await _launchApp(tester);
+    await _goToTVSeriesHome(tester);
 
-      final topRatedSeeMore = find.text('See More').last;
-      await tester.ensureVisible(topRatedSeeMore);
-      await tester.pumpAndSettle();
-      await tester.tap(topRatedSeeMore);
-      await _waitForNetwork(tester);
+    final topRatedSeeMore = find.text('See More').last;
+    await tester.ensureVisible(topRatedSeeMore);
+    await tester.pumpAndSettle();
+    await tester.tap(topRatedSeeMore);
+    await _waitForNetwork(tester);
 
-      expect(find.text('Top Rated TV Series'), findsOneWidget);
-    },
-  );
+    expect(find.text('Top Rated TV Series'), findsOneWidget);
+  });
 
   testWidgets(
     '16. TV Series Search page should open and contain a search TextField',

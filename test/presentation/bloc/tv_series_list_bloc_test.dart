@@ -45,10 +45,12 @@ void main() {
     blocTest<NowPlayingTVSeriesBloc, NowPlayingTVSeriesState>(
       'emits [Loading, Loaded] when FetchNowPlayingTVSeries succeeds',
       build: () {
-        when(mockGetNowPlayingTVSeries.execute())
-            .thenAnswer((_) async => Right(tTVSeriesList));
+        when(
+          mockGetNowPlayingTVSeries.execute(),
+        ).thenAnswer((_) async => Right(tTVSeriesList));
         return NowPlayingTVSeriesBloc(
-            getNowPlayingTVSeries: mockGetNowPlayingTVSeries);
+          getNowPlayingTVSeries: mockGetNowPlayingTVSeries,
+        );
       },
       act: (bloc) => bloc.add(FetchNowPlayingTVSeries()),
       expect: () => [
@@ -60,10 +62,12 @@ void main() {
     blocTest<NowPlayingTVSeriesBloc, NowPlayingTVSeriesState>(
       'emits [Loading, Error] when FetchNowPlayingTVSeries fails',
       build: () {
-        when(mockGetNowPlayingTVSeries.execute()).thenAnswer(
-            (_) async => const Left(ServerFailure('Server Failure')));
+        when(
+          mockGetNowPlayingTVSeries.execute(),
+        ).thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         return NowPlayingTVSeriesBloc(
-            getNowPlayingTVSeries: mockGetNowPlayingTVSeries);
+          getNowPlayingTVSeries: mockGetNowPlayingTVSeries,
+        );
       },
       act: (bloc) => bloc.add(FetchNowPlayingTVSeries()),
       expect: () => [
@@ -77,8 +81,9 @@ void main() {
     blocTest<PopularTVSeriesBloc, PopularTVSeriesState>(
       'emits [Loading, Loaded] when FetchPopularTVSeries succeeds',
       build: () {
-        when(mockGetPopularTVSeries.execute())
-            .thenAnswer((_) async => Right(tTVSeriesList));
+        when(
+          mockGetPopularTVSeries.execute(),
+        ).thenAnswer((_) async => Right(tTVSeriesList));
         return PopularTVSeriesBloc(getPopularTVSeries: mockGetPopularTVSeries);
       },
       act: (bloc) => bloc.add(FetchPopularTVSeries()),
@@ -91,8 +96,9 @@ void main() {
     blocTest<PopularTVSeriesBloc, PopularTVSeriesState>(
       'emits [Loading, Error] when FetchPopularTVSeries fails',
       build: () {
-        when(mockGetPopularTVSeries.execute()).thenAnswer(
-            (_) async => const Left(ServerFailure('Server Failure')));
+        when(
+          mockGetPopularTVSeries.execute(),
+        ).thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         return PopularTVSeriesBloc(getPopularTVSeries: mockGetPopularTVSeries);
       },
       act: (bloc) => bloc.add(FetchPopularTVSeries()),
@@ -107,10 +113,12 @@ void main() {
     blocTest<TopRatedTVSeriesBloc, TopRatedTVSeriesState>(
       'emits [Loading, Loaded] when FetchTopRatedTVSeries succeeds',
       build: () {
-        when(mockGetTopRatedTVSeries.execute())
-            .thenAnswer((_) async => Right(tTVSeriesList));
+        when(
+          mockGetTopRatedTVSeries.execute(),
+        ).thenAnswer((_) async => Right(tTVSeriesList));
         return TopRatedTVSeriesBloc(
-            getTopRatedTVSeries: mockGetTopRatedTVSeries);
+          getTopRatedTVSeries: mockGetTopRatedTVSeries,
+        );
       },
       act: (bloc) => bloc.add(FetchTopRatedTVSeries()),
       expect: () => [
@@ -122,10 +130,12 @@ void main() {
     blocTest<TopRatedTVSeriesBloc, TopRatedTVSeriesState>(
       'emits [Loading, Error] when FetchTopRatedTVSeries fails',
       build: () {
-        when(mockGetTopRatedTVSeries.execute()).thenAnswer(
-            (_) async => const Left(ServerFailure('Server Failure')));
+        when(
+          mockGetTopRatedTVSeries.execute(),
+        ).thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         return TopRatedTVSeriesBloc(
-            getTopRatedTVSeries: mockGetTopRatedTVSeries);
+          getTopRatedTVSeries: mockGetTopRatedTVSeries,
+        );
       },
       act: (bloc) => bloc.add(FetchTopRatedTVSeries()),
       expect: () => [

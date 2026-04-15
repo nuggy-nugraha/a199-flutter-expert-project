@@ -46,7 +46,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '369230702143',
     projectId: 'belajar-firebase-37c5f',
     authDomain: 'belajar-firebase-37c5f.firebaseapp.com',
-    databaseURL: 'https://belajar-firebase-37c5f-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://belajar-firebase-37c5f-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'belajar-firebase-37c5f.appspot.com',
     measurementId: 'G-Z3XEWWEGGF',
   );
@@ -56,7 +57,8 @@ class DefaultFirebaseOptions {
     appId: '1:369230702143:android:77910fec3cd9d441d43a8a',
     messagingSenderId: '369230702143',
     projectId: 'belajar-firebase-37c5f',
-    databaseURL: 'https://belajar-firebase-37c5f-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://belajar-firebase-37c5f-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'belajar-firebase-37c5f.appspot.com',
   );
 
@@ -65,7 +67,8 @@ class DefaultFirebaseOptions {
     appId: '1:369230702143:ios:10c4ab44efc0471fd43a8a',
     messagingSenderId: '369230702143',
     projectId: 'belajar-firebase-37c5f',
-    databaseURL: 'https://belajar-firebase-37c5f-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://belajar-firebase-37c5f-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'belajar-firebase-37c5f.appspot.com',
     iosBundleId: 'com.dicoding.ditonton',
   );
@@ -75,7 +78,8 @@ class DefaultFirebaseOptions {
     appId: '1:369230702143:ios:10c4ab44efc0471fd43a8a',
     messagingSenderId: '369230702143',
     projectId: 'belajar-firebase-37c5f',
-    databaseURL: 'https://belajar-firebase-37c5f-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://belajar-firebase-37c5f-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'belajar-firebase-37c5f.appspot.com',
     iosBundleId: 'com.dicoding.ditonton',
   );
@@ -86,7 +90,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '369230702143',
     projectId: 'belajar-firebase-37c5f',
     authDomain: 'belajar-firebase-37c5f.firebaseapp.com',
-    databaseURL: 'https://belajar-firebase-37c5f-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://belajar-firebase-37c5f-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'belajar-firebase-37c5f.appspot.com',
     measurementId: 'G-HT8F6L1XY0',
   );

@@ -64,12 +64,11 @@ flutter:
     - assets/certificates/
 
 flutter_native_splash:
-  color: "#FFFFFF"  ##====================================[REQUIRED]==========
+  color: "#FFFFFF"
   image: assets/circle-g.png
-  fullscreen: true                # default false
+  fullscreen: true              
 
   android_12:
-    # background color
     color: "FFFFFF"
     image: assets/circle-g.png    
     icon_background_color: "#111111"

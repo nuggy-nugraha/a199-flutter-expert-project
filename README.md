@@ -62,5 +62,3 @@ Jika kamu menerapkan modular pada project, Anda dapat memanfaatkan berkas `test.
 4. Tunggu proses testing selesai hingga muncul web terkait laporan coverage.
 
 # a199-flutter-expert-project
-# a199-flutter-expert-project
-# a199-flutter-expert-project
