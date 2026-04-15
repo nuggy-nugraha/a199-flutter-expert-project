@@ -49,4 +49,14 @@ void main() {
       ],
     );
   });
+
+  group('Event props', () {
+    test('FetchWatchlistMovies props returns empty list', () {
+      expect(FetchWatchlistMovies().props, []);
+    });
+
+    test('FetchWatchlistMovies equality', () {
+      expect(FetchWatchlistMovies(), equals(FetchWatchlistMovies()));
+    });
+  });
 }

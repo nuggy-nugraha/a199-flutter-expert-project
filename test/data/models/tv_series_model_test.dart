@@ -81,5 +81,18 @@ void main() {
       final result = tTVSeriesResponse.toJson();
       expect(result['results'], isA<List>());
     });
+
+    test('props should contain tvSeriesList', () {
+      const tTVSeriesResponse = TVSeriesResponse(
+        tvSeriesList: [tTVSeriesModel],
+      );
+      expect(tTVSeriesResponse.props, [const [tTVSeriesModel]]);
+    });
+
+    test('two responses with same list are equal', () {
+      const r1 = TVSeriesResponse(tvSeriesList: [tTVSeriesModel]);
+      const r2 = TVSeriesResponse(tvSeriesList: [tTVSeriesModel]);
+      expect(r1, equals(r2));
+    });
   });
 }

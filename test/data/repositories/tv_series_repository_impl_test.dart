@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:ditonton/data/models/season_detail_response.dart';
 import 'package:ditonton/data/models/tv_series_detail_model.dart';
 import 'package:ditonton/data/models/tv_series_model.dart';
 import 'package:ditonton/data/repositories/tv_series_repository_impl.dart';
@@ -394,5 +395,56 @@ void main() {
       final resultList = result.getOrElse(() => []);
       expect(resultList, [testWatchlistTVSeries]);
     });
+  });
+
+  group('Get Season Detail', () {
+    const tTvId = 88396;
+    const tSeasonNumber = 1;
+
+    final tSeasonDetailResponse = SeasonDetailResponse.fromJson({
+      'id': 134006,
+      'name': 'Season 1',
+      'overview': 'Sam and Bucky team up for global adventure.',
+      'poster_path': '/6kbAMLteGO8yyewYau6bJ683sw7.jpg',
+      'season_number': 1,
+      'episodes': [],
+    });
+
+    test(
+      'should return list of episodes when call to remote data source is successful',
+      () async {
+        when(
+          mockRemoteDataSource.getSeasonDetail(tTvId, tSeasonNumber),
+        ).thenAnswer((_) async => tSeasonDetailResponse);
+        final result = await repository.getSeasonDetail(tTvId, tSeasonNumber);
+        final resultList = result.getOrElse(() => []);
+        expect(resultList, []);
+      },
+    );
+
+    test(
+      'should return server failure when call to remote data source is unsuccessful',
+      () async {
+        when(
+          mockRemoteDataSource.getSeasonDetail(tTvId, tSeasonNumber),
+        ).thenThrow(ServerException());
+        final result = await repository.getSeasonDetail(tTvId, tSeasonNumber);
+        expect(result, const Left(ServerFailure('')));
+      },
+    );
+
+    test(
+      'should return connection failure when device is not connected',
+      () async {
+        when(
+          mockRemoteDataSource.getSeasonDetail(tTvId, tSeasonNumber),
+        ).thenThrow(const SocketException('Failed to connect to the network'));
+        final result = await repository.getSeasonDetail(tTvId, tSeasonNumber);
+        expect(
+          result,
+          const Left(ConnectionFailure('Failed to connect to the network')),
+        );
+      },
+    );
   });
 }

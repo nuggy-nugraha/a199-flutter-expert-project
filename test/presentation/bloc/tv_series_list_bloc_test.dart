@@ -144,4 +144,22 @@ void main() {
       ],
     );
   });
+
+  group('Event props', () {
+    test('FetchNowPlayingTVSeries props returns empty list', () {
+      expect(FetchNowPlayingTVSeries().props, []);
+    });
+
+    test('FetchPopularTVSeries props returns empty list', () {
+      expect(FetchPopularTVSeries().props, []);
+    });
+
+    test('FetchTopRatedTVSeries props returns empty list', () {
+      expect(FetchTopRatedTVSeries().props, []);
+    });
+
+    test('FetchNowPlayingTVSeries equality', () {
+      expect(FetchNowPlayingTVSeries(), equals(FetchNowPlayingTVSeries()));
+    });
+  });
 }

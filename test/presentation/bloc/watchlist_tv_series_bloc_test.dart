@@ -53,4 +53,14 @@ void main() {
       ],
     );
   });
+
+  group('Event props', () {
+    test('FetchWatchlistTVSeries props returns empty list', () {
+      expect(FetchWatchlistTVSeries().props, []);
+    });
+
+    test('FetchWatchlistTVSeries equality', () {
+      expect(FetchWatchlistTVSeries(), equals(FetchWatchlistTVSeries()));
+    });
+  });
 }

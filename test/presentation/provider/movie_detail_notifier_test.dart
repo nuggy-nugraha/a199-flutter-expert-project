@@ -202,6 +202,23 @@ void main() {
       verify(mockRemoveWatchlist.execute(testMovieDetail));
     });
 
+    test('should update watchlist message when remove watchlist failed',
+        () async {
+      // arrange
+      when(
+        mockRemoveWatchlist.execute(testMovieDetail),
+      ).thenAnswer(
+        (_) async => const Left(DatabaseFailure('Cannot remove from Watchlist')),
+      );
+      when(
+        mockGetWatchlistStatus.execute(testMovieDetail.id),
+      ).thenAnswer((_) async => true);
+      // act
+      await provider.removeFromWatchlist(testMovieDetail);
+      // assert
+      expect(provider.watchlistMessage, 'Cannot remove from Watchlist');
+    });
+
     test('should update watchlist status when add watchlist success', () async {
       // arrange
       when(

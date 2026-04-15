@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/data/datasources/tv_series_remote_data_source.dart';
+import 'package:ditonton/data/models/season_detail_response.dart';
 import 'package:ditonton/data/models/tv_series_detail_model.dart';
 import 'package:ditonton/data/models/tv_series_response.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -185,6 +186,59 @@ void main() {
       ).thenAnswer((_) async => http.Response('Not Found', 404));
 
       final call = dataSource.getTVSeriesRecommendations(id);
+
+      expect(() => call, throwsA(isA<ServerException>()));
+    });
+  });
+
+  group('get Season Detail', () {
+    const tvId = 88396;
+    const seasonNumber = 1;
+
+    final tSeasonDetailResponse = SeasonDetailResponse.fromJson({
+      'id': 134006,
+      'name': 'Season 1',
+      'overview': 'Sam and Bucky team up for global adventure.',
+      'poster_path': '/6kbAMLteGO8yyewYau6bJ683sw7.jpg',
+      'season_number': 1,
+      'episodes': [],
+    });
+
+    test(
+      'should return SeasonDetailResponse when response code is 200',
+      () async {
+        when(
+          mockHttpClient.get(
+            Uri.parse('$baseUrl/tv/$tvId/season/$seasonNumber?$apiKey'),
+          ),
+        ).thenAnswer(
+          (_) async => http.Response(
+            json.encode({
+              'id': 134006,
+              'name': 'Season 1',
+              'overview': 'Sam and Bucky team up for global adventure.',
+              'poster_path': '/6kbAMLteGO8yyewYau6bJ683sw7.jpg',
+              'season_number': 1,
+              'episodes': [],
+            }),
+            200,
+          ),
+        );
+
+        final result = await dataSource.getSeasonDetail(tvId, seasonNumber);
+
+        expect(result, equals(tSeasonDetailResponse));
+      },
+    );
+
+    test('should throw ServerException when response code is 404', () async {
+      when(
+        mockHttpClient.get(
+          Uri.parse('$baseUrl/tv/$tvId/season/$seasonNumber?$apiKey'),
+        ),
+      ).thenAnswer((_) async => http.Response('Not Found', 404));
+
+      final call = dataSource.getSeasonDetail(tvId, seasonNumber);
 
       expect(() => call, throwsA(isA<ServerException>()));
     });

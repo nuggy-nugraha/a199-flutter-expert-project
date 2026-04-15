@@ -71,6 +71,31 @@ void main() {
     );
 
     blocTest<MovieDetailBloc, MovieDetailState>(
+      'emits [Loading, Loaded] with empty recommendations when recommendations fail',
+      build: () {
+        when(
+          mockGetMovieDetail.execute(tId),
+        ).thenAnswer((_) async => const Right(testMovieDetail));
+        when(
+          mockGetMovieRecommendations.execute(tId),
+        ).thenAnswer(
+          (_) async => const Left(ServerFailure('Server Failure')),
+        );
+        return makeBloc();
+      },
+      act: (bloc) => bloc.add(const FetchMovieDetail(tId)),
+      expect: () => [
+        MovieDetailLoading(),
+        MovieDetailLoaded(
+          movie: testMovieDetail,
+          recommendations: const [],
+          isAddedToWatchlist: false,
+          watchlistMessage: '',
+        ),
+      ],
+    );
+
+    blocTest<MovieDetailBloc, MovieDetailState>(
       'emits [Loading, Error] when fetch fails',
       build: () {
         when(
@@ -173,6 +198,39 @@ void main() {
         ),
       ],
     );
+
+    blocTest<MovieDetailBloc, MovieDetailState>(
+      'emits Loaded with failure message when remove watchlist fails',
+      build: () {
+        when(mockRemoveWatchlist.execute(testMovieDetail)).thenAnswer(
+          (_) async =>
+              const Left(DatabaseFailure('Cannot remove from Watchlist')),
+        );
+        return makeBloc();
+      },
+      seed: () => MovieDetailLoaded(
+        movie: testMovieDetail,
+        recommendations: testMovieList,
+        isAddedToWatchlist: true,
+        watchlistMessage: '',
+      ),
+      act: (bloc) => bloc.add(const RemoveMovieFromWatchlist(testMovieDetail)),
+      expect: () => [
+        MovieDetailLoaded(
+          movie: testMovieDetail,
+          recommendations: testMovieList,
+          isAddedToWatchlist: true,
+          watchlistMessage: 'Cannot remove from Watchlist',
+        ),
+      ],
+    );
+
+    blocTest<MovieDetailBloc, MovieDetailState>(
+      'does nothing when state is not Loaded',
+      build: () => makeBloc(),
+      act: (bloc) => bloc.add(const RemoveMovieFromWatchlist(testMovieDetail)),
+      expect: () => [],
+    );
   });
 
   group('LoadMovieWatchlistStatus', () {
@@ -198,5 +256,36 @@ void main() {
         ),
       ],
     );
+  });
+
+  group('Event props', () {
+    test('FetchMovieDetail props contains id', () {
+      expect(const FetchMovieDetail(1).props, [1]);
+    });
+
+    test('AddMovieToWatchlist props contains movie', () {
+      expect(
+        const AddMovieToWatchlist(testMovieDetail).props,
+        [testMovieDetail],
+      );
+    });
+
+    test('RemoveMovieFromWatchlist props contains movie', () {
+      expect(
+        const RemoveMovieFromWatchlist(testMovieDetail).props,
+        [testMovieDetail],
+      );
+    });
+
+    test('LoadMovieWatchlistStatus props contains id', () {
+      expect(const LoadMovieWatchlistStatus(1).props, [1]);
+    });
+
+    test('Event equality via props', () {
+      expect(
+        const FetchMovieDetail(1),
+        equals(const FetchMovieDetail(1)),
+      );
+    });
   });
 }

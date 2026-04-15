@@ -66,4 +66,18 @@ void main() {
       ],
     );
   });
+
+  group('Event props', () {
+    test('OnMovieQueryChanged props contains query', () {
+      const event = OnMovieQueryChanged('spiderman');
+      expect(event.props, ['spiderman']);
+    });
+
+    test('OnMovieQueryChanged equality', () {
+      expect(
+        const OnMovieQueryChanged('spiderman'),
+        equals(const OnMovieQueryChanged('spiderman')),
+      );
+    });
+  });
 }

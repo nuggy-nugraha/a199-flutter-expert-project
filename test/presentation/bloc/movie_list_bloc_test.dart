@@ -134,4 +134,22 @@ void main() {
       ],
     );
   });
+
+  group('Event props', () {
+    test('FetchNowPlayingMovies props returns empty list', () {
+      expect(FetchNowPlayingMovies().props, []);
+    });
+
+    test('FetchPopularMovies props returns empty list', () {
+      expect(FetchPopularMovies().props, []);
+    });
+
+    test('FetchTopRatedMovies props returns empty list', () {
+      expect(FetchTopRatedMovies().props, []);
+    });
+
+    test('FetchNowPlayingMovies equality', () {
+      expect(FetchNowPlayingMovies(), equals(FetchNowPlayingMovies()));
+    });
+  });
 }

@@ -69,4 +69,18 @@ void main() {
       ],
     );
   });
+
+  group('Event props', () {
+    test('OnTVSeriesQueryChanged props contains query', () {
+      const event = OnTVSeriesQueryChanged('falcon');
+      expect(event.props, ['falcon']);
+    });
+
+    test('OnTVSeriesQueryChanged equality', () {
+      expect(
+        const OnTVSeriesQueryChanged('falcon'),
+        equals(const OnTVSeriesQueryChanged('falcon')),
+      );
+    });
+  });
 }
