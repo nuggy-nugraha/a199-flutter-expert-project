@@ -7,7 +7,8 @@ void main() {
     episodeNumber: 1,
     id: 1234567,
     name: 'New World Order',
-    overview: 'Sam and Bucky must navigate their time as the new Captain America.',
+    overview:
+        'Sam and Bucky must navigate their time as the new Captain America.',
     stillPath: '/still_path.jpg',
     voteAverage: 7.5,
     voteCount: 100,

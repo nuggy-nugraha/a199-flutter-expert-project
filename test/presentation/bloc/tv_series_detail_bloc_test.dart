@@ -255,9 +255,7 @@ void main() {
     blocTest<TVSeriesDetailBloc, TVSeriesDetailState>(
       'emits Loaded with failure message when add watchlist fails',
       build: () {
-        when(
-          mockSaveWatchlistTVSeries.execute(testTVSeriesDetail),
-        ).thenAnswer(
+        when(mockSaveWatchlistTVSeries.execute(testTVSeriesDetail)).thenAnswer(
           (_) async =>
               const Left(DatabaseFailure('Cannot add data to Watchlist')),
         );
@@ -354,9 +352,7 @@ void main() {
         ).thenAnswer((_) async => const Right(testTVSeriesDetail));
         when(
           mockGetTVSeriesRecommendations.execute(tId),
-        ).thenAnswer(
-          (_) async => const Left(ServerFailure('Server Failure')),
-        );
+        ).thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         when(
           mockGetWatchlistTVSeriesStatus.execute(tId),
         ).thenAnswer((_) async => false);
@@ -452,9 +448,7 @@ void main() {
       build: () {
         when(
           mockGetSeasonDetail.execute(tId, 1),
-        ).thenAnswer(
-          (_) async => const Left(ServerFailure('Server Failure')),
-        );
+        ).thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         return makeBloc();
       },
       seed: () => TVSeriesDetailLoaded(
@@ -500,17 +494,15 @@ void main() {
     });
 
     test('AddTVSeriesToWatchlist props contains tvSeries', () {
-      expect(
-        const AddTVSeriesToWatchlist(testTVSeriesDetail).props,
-        [testTVSeriesDetail],
-      );
+      expect(const AddTVSeriesToWatchlist(testTVSeriesDetail).props, [
+        testTVSeriesDetail,
+      ]);
     });
 
     test('RemoveTVSeriesFromWatchlist props contains tvSeries', () {
-      expect(
-        const RemoveTVSeriesFromWatchlist(testTVSeriesDetail).props,
-        [testTVSeriesDetail],
-      );
+      expect(const RemoveTVSeriesFromWatchlist(testTVSeriesDetail).props, [
+        testTVSeriesDetail,
+      ]);
     });
 
     test('LoadTVSeriesWatchlistStatus props contains id', () {

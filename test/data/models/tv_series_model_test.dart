@@ -86,7 +86,9 @@ void main() {
       const tTVSeriesResponse = TVSeriesResponse(
         tvSeriesList: [tTVSeriesModel],
       );
-      expect(tTVSeriesResponse.props, [const [tTVSeriesModel]]);
+      expect(tTVSeriesResponse.props, [
+        const [tTVSeriesModel],
+      ]);
     });
 
     test('two responses with same list are equal', () {

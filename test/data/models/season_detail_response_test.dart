@@ -41,7 +41,7 @@ void main() {
         'vote_average': 7.5,
         'vote_count': 100,
         'season_number': 1,
-      }
+      },
     ],
   };
 

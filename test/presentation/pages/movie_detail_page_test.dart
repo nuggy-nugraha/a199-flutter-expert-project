@@ -9,8 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../dummy_data/dummy_objects.dart';
 
-class MockMovieDetailBloc
-    extends MockBloc<MovieDetailEvent, MovieDetailState>
+class MockMovieDetailBloc extends MockBloc<MovieDetailEvent, MovieDetailState>
     implements MovieDetailBloc {}
 
 void main() {
@@ -144,9 +143,7 @@ void main() {
       whenListen(
         mockBloc,
         Stream<MovieDetailState>.empty(),
-        initialState: baseLoadedState.copyWith(
-          recommendations: testMovieList,
-        ),
+        initialState: baseLoadedState.copyWith(recommendations: testMovieList),
       );
 
       await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));

@@ -78,9 +78,7 @@ void main() {
         ).thenAnswer((_) async => const Right(testMovieDetail));
         when(
           mockGetMovieRecommendations.execute(tId),
-        ).thenAnswer(
-          (_) async => const Left(ServerFailure('Server Failure')),
-        );
+        ).thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         return makeBloc();
       },
       act: (bloc) => bloc.add(const FetchMovieDetail(tId)),
@@ -264,17 +262,15 @@ void main() {
     });
 
     test('AddMovieToWatchlist props contains movie', () {
-      expect(
-        const AddMovieToWatchlist(testMovieDetail).props,
-        [testMovieDetail],
-      );
+      expect(const AddMovieToWatchlist(testMovieDetail).props, [
+        testMovieDetail,
+      ]);
     });
 
     test('RemoveMovieFromWatchlist props contains movie', () {
-      expect(
-        const RemoveMovieFromWatchlist(testMovieDetail).props,
-        [testMovieDetail],
-      );
+      expect(const RemoveMovieFromWatchlist(testMovieDetail).props, [
+        testMovieDetail,
+      ]);
     });
 
     test('LoadMovieWatchlistStatus props contains id', () {
@@ -282,10 +278,7 @@ void main() {
     });
 
     test('Event equality via props', () {
-      expect(
-        const FetchMovieDetail(1),
-        equals(const FetchMovieDetail(1)),
-      );
+      expect(const FetchMovieDetail(1), equals(const FetchMovieDetail(1)));
     });
   });
 }
