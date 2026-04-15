@@ -43,29 +43,22 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
     final recommendationResult = await getMovieRecommendations.execute(
       event.id,
     );
+    final watchlistStatus = await getWatchListStatus.execute(event.id);
 
     detailResult.fold((failure) => emit(MovieDetailError(failure.message)), (
       movie,
     ) {
-      final watchlistStatus = state is MovieDetailLoaded
-          ? (state as MovieDetailLoaded).isAddedToWatchlist
-          : false;
+      List<Movie> recommendations = [];
       recommendationResult.fold(
-        (failure) => emit(
-          MovieDetailLoaded(
-            movie: movie,
-            recommendations: const [],
-            isAddedToWatchlist: watchlistStatus,
-            watchlistMessage: '',
-          ),
-        ),
-        (movies) => emit(
-          MovieDetailLoaded(
-            movie: movie,
-            recommendations: movies,
-            isAddedToWatchlist: watchlistStatus,
-            watchlistMessage: '',
-          ),
+        (failure) => {},
+        (movies) => recommendations = movies,
+      );
+      emit(
+        MovieDetailLoaded(
+          movie: movie,
+          recommendations: recommendations,
+          isAddedToWatchlist: watchlistStatus,
+          watchlistMessage: '',
         ),
       );
     });

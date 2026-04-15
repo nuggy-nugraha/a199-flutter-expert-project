@@ -220,4 +220,67 @@ void main() {
       expect(listenerCallCount, 2);
     });
   });
+
+  group('Season Episodes', () {
+    test('should update episode state to loaded on success', () async {
+      const tEpisode = Episode(
+        airDate: '2021-03-19',
+        episodeNumber: 1,
+        id: 1,
+        name: 'Episode 1',
+        overview: 'overview',
+        seasonNumber: 1,
+        stillPath: '/still.jpg',
+        voteAverage: 8.0,
+        voteCount: 100,
+      );
+      when(
+        mockGetSeasonDetail.execute(tId, 1),
+      ).thenAnswer((_) async => const Right([tEpisode]));
+
+      await provider.fetchSeasonEpisodes(tId, 1);
+
+      expect(provider.episodeState, RequestState.loaded);
+      expect(provider.seasonEpisodes, [tEpisode]);
+      expect(provider.selectedSeason, 1);
+    });
+
+    test('should update episode state to error on failure', () async {
+      when(
+        mockGetSeasonDetail.execute(tId, 1),
+      ).thenAnswer(
+        (_) async => const Left(ServerFailure('Season Failure')),
+      );
+
+      await provider.fetchSeasonEpisodes(tId, 1);
+
+      expect(provider.episodeState, RequestState.error);
+      expect(provider.message, 'Season Failure');
+    });
+
+    test('should expose seasonEpisodes, episodeState, selectedSeason getters',
+        () {
+      expect(provider.seasonEpisodes, []);
+      expect(provider.episodeState, RequestState.empty);
+      expect(provider.selectedSeason, 1);
+    });
+  });
+
+  group('Remove Watchlist', () {
+    test('should update watchlist message when remove watchlist failed',
+        () async {
+      when(
+        mockRemoveWatchlistTVSeries.execute(testTVSeriesDetail),
+      ).thenAnswer(
+        (_) async => const Left(DatabaseFailure('Cannot remove data')),
+      );
+      when(
+        mockGetWatchlistTVSeriesStatus.execute(testTVSeriesDetail.id),
+      ).thenAnswer((_) async => true);
+
+      await provider.removeFromWatchlist(testTVSeriesDetail);
+
+      expect(provider.watchlistMessage, 'Cannot remove data');
+    });
+  });
 }

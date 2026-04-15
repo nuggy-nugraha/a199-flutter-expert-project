@@ -56,6 +56,9 @@ void main() {
         when(
           mockGetMovieRecommendations.execute(tId),
         ).thenAnswer((_) async => Right(testMovieList));
+        when(
+          mockGetWatchListStatus.execute(tId),
+        ).thenAnswer((_) async => false);
         return makeBloc();
       },
       act: (bloc) => bloc.add(const FetchMovieDetail(tId)),
@@ -79,6 +82,9 @@ void main() {
         when(
           mockGetMovieRecommendations.execute(tId),
         ).thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
+        when(
+          mockGetWatchListStatus.execute(tId),
+        ).thenAnswer((_) async => false);
         return makeBloc();
       },
       act: (bloc) => bloc.add(const FetchMovieDetail(tId)),
@@ -102,12 +108,41 @@ void main() {
         when(
           mockGetMovieRecommendations.execute(tId),
         ).thenAnswer((_) async => Right(testMovieList));
+        when(
+          mockGetWatchListStatus.execute(tId),
+        ).thenAnswer((_) async => false);
         return makeBloc();
       },
       act: (bloc) => bloc.add(const FetchMovieDetail(tId)),
       expect: () => [
         MovieDetailLoading(),
         const MovieDetailError('Server Failure'),
+      ],
+    );
+
+    blocTest<MovieDetailBloc, MovieDetailState>(
+      'emits [Loading, Loaded] with isAddedToWatchlist true when movie is in watchlist',
+      build: () {
+        when(
+          mockGetMovieDetail.execute(tId),
+        ).thenAnswer((_) async => const Right(testMovieDetail));
+        when(
+          mockGetMovieRecommendations.execute(tId),
+        ).thenAnswer((_) async => Right(testMovieList));
+        when(
+          mockGetWatchListStatus.execute(tId),
+        ).thenAnswer((_) async => true);
+        return makeBloc();
+      },
+      act: (bloc) => bloc.add(const FetchMovieDetail(tId)),
+      expect: () => [
+        MovieDetailLoading(),
+        MovieDetailLoaded(
+          movie: testMovieDetail,
+          recommendations: testMovieList,
+          isAddedToWatchlist: true,
+          watchlistMessage: '',
+        ),
       ],
     );
   });

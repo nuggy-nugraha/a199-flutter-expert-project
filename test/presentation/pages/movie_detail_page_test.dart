@@ -1,11 +1,12 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:ditonton/domain/entities/genre.dart';
+import 'package:ditonton/domain/entities/movie_detail.dart';
 import 'package:ditonton/presentation/bloc/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/pages/movie_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../dummy_data/dummy_objects.dart';
 
 class MockMovieDetailBloc extends MockBloc<MovieDetailEvent, MovieDetailState>
@@ -163,6 +164,93 @@ void main() {
       await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
 
       expect(find.byType(MovieDetailPage), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'Tapping watchlist button when not added should dispatch AddMovieToWatchlist',
+    (WidgetTester tester) async {
+      whenListen(
+        mockBloc,
+        const Stream<MovieDetailState>.empty(),
+        initialState: baseLoadedState,
+      );
+
+      await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+
+      await tester.tap(find.byType(FilledButton));
+      await tester.pump();
+      expect(find.byType(FilledButton), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'Tapping watchlist button when already added should dispatch RemoveMovieFromWatchlist',
+    (WidgetTester tester) async {
+      whenListen(
+        mockBloc,
+        const Stream<MovieDetailState>.empty(),
+        initialState: baseLoadedState.copyWith(isAddedToWatchlist: true),
+      );
+
+      await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+
+      await tester.tap(find.byType(FilledButton));
+      await tester.pump();
+      expect(find.byType(FilledButton), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'Tapping back button should pop the page',
+    (WidgetTester tester) async {
+      whenListen(
+        mockBloc,
+        const Stream<MovieDetailState>.empty(),
+        initialState: baseLoadedState,
+      );
+
+      await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+      await tester.tap(find.byIcon(Icons.arrow_back));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(MovieDetailPage), findsNothing);
+    },
+  );
+
+  testWidgets(
+    'Page should display duration in minutes only when runtime less than 60',
+    (WidgetTester tester) async {
+      const shortMovie = MovieDetail(
+        adult: false,
+        backdropPath: 'backdropPath',
+        genres: [Genre(id: 1, name: 'Action')],
+        id: 2,
+        originalTitle: 'Short Film',
+        overview: 'overview',
+        posterPath: 'posterPath',
+        releaseDate: 'releaseDate',
+        runtime: 45,
+        title: 'Short Film',
+        voteAverage: 7.0,
+        voteCount: 100,
+      );
+      const shortMovieState = MovieDetailLoaded(
+        movie: shortMovie,
+        recommendations: [],
+        isAddedToWatchlist: false,
+        watchlistMessage: '',
+      );
+
+      whenListen(
+        mockBloc,
+        const Stream<MovieDetailState>.empty(),
+        initialState: shortMovieState,
+      );
+
+      await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 2)));
+
+      expect(find.text('45m'), findsOneWidget);
     },
   );
 }

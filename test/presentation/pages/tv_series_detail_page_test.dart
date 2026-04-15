@@ -189,4 +189,131 @@ void main() {
       expect(find.byType(TVSeriesDetailPage), findsOneWidget);
     },
   );
+
+  testWidgets(
+    'Tapping watchlist button when not added should call add event',
+    (WidgetTester tester) async {
+      whenListen(
+        mockBloc,
+        const Stream<TVSeriesDetailState>.empty(),
+        initialState: baseLoadedState,
+      );
+
+      await tester.pumpWidget(
+        makeTestableWidget(const TVSeriesDetailPage(id: 88396)),
+      );
+
+      await tester.tap(find.byType(FilledButton));
+      await tester.pump();
+      expect(find.byType(FilledButton), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'Tapping watchlist button when already added should call remove event',
+    (WidgetTester tester) async {
+      whenListen(
+        mockBloc,
+        const Stream<TVSeriesDetailState>.empty(),
+        initialState: baseLoadedState.copyWith(isAddedToWatchlist: true),
+      );
+
+      await tester.pumpWidget(
+        makeTestableWidget(const TVSeriesDetailPage(id: 88396)),
+      );
+
+      await tester.tap(find.byType(FilledButton));
+      await tester.pump();
+      expect(find.byType(FilledButton), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'Tapping back button should pop the page',
+    (WidgetTester tester) async {
+      whenListen(
+        mockBloc,
+        const Stream<TVSeriesDetailState>.empty(),
+        initialState: baseLoadedState,
+      );
+
+      await tester.pumpWidget(
+        makeTestableWidget(const TVSeriesDetailPage(id: 88396)),
+      );
+
+      await tester.tap(find.byIcon(Icons.arrow_back));
+      await tester.pumpAndSettle();
+      expect(find.byType(TVSeriesDetailPage), findsNothing);
+    },
+  );
+
+  testWidgets(
+    'Should show loading indicator when episode state is loading',
+    (WidgetTester tester) async {
+      whenListen(
+        mockBloc,
+        const Stream<TVSeriesDetailState>.empty(),
+        initialState: baseLoadedState.copyWith(
+          episodeState: TVSeriesEpisodeState.loading,
+        ),
+      );
+
+      await tester.pumpWidget(
+        makeTestableWidget(const TVSeriesDetailPage(id: 88396)),
+      );
+
+      expect(find.byType(CircularProgressIndicator), findsWidgets);
+    },
+  );
+
+  testWidgets(
+    'Should show error message when episode state is error',
+    (WidgetTester tester) async {
+      whenListen(
+        mockBloc,
+        const Stream<TVSeriesDetailState>.empty(),
+        initialState: baseLoadedState.copyWith(
+          episodeState: TVSeriesEpisodeState.error,
+          episodeMessage: 'Episode Error',
+        ),
+      );
+
+      await tester.pumpWidget(
+        makeTestableWidget(const TVSeriesDetailPage(id: 88396)),
+      );
+
+      expect(find.text('Episode Error'), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'Should show episodes when episode state is loaded',
+    (WidgetTester tester) async {
+      const tEpisode = Episode(
+        airDate: '2021-03-19',
+        episodeNumber: 1,
+        id: 1,
+        name: 'Episode 1',
+        overview: 'overview',
+        seasonNumber: 1,
+        stillPath: null,
+        voteAverage: 8.0,
+        voteCount: 100,
+      );
+      whenListen(
+        mockBloc,
+        const Stream<TVSeriesDetailState>.empty(),
+        initialState: baseLoadedState.copyWith(
+          episodeState: TVSeriesEpisodeState.loaded,
+          seasonEpisodes: const [tEpisode],
+        ),
+      );
+
+      await tester.pumpWidget(
+        makeTestableWidget(const TVSeriesDetailPage(id: 88396)),
+      );
+
+      expect(find.text('1. Episode 1'), findsOneWidget);
+    },
+  );
 }
